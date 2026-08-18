@@ -1,0 +1,571 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES GLOBAIS E VARIÁVEIS
+   ========================================================================== */
+:root {
+  /* --- Paleta --- */
+  --bg-dark: #14161a;
+  --surface: #16191a;
+  --surface-2: #1b1e21;
+  --scroll-dark: #303335;
+  --border-soft: #2c3237;
+  --border-strong: #42484b;
+
+  --accent: #38bdf8;      /* azul leitura */
+  --accent-2: #818cf8;    /* índigo suave */
+  --gold: #f6d860;        /* aviso / destaque secundário */
+
+  --text-primary: #f4f4f6;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+
+  /* --- Raio e espaçamento --- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+
+  --page-max: 1600px;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  font-family: system-ui, -apple-system, sans-serif;
+  
+  background-color: var(--bg-dark);
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-dark {
+  background-color: var(--bg-dark) !important;
+}
+
+.border-secondary {
+  border-color: var(--border-strong) !important;
+}
+
+.navx {
+  height: 5vh;
+}
+
+::selection {
+  background-color: #053AA4;
+  color: #fff;
+}
+
+
+/* ==========================================================================
+   2. ANIMAÇÕES E FADE-IN
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s cubic-bezier(0.16, 0.8, 0.24, 1),
+    transform 0.7s cubic-bezier(0.16, 0.8, 0.24, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
+/* ==========================================================================
+   3. GERENCIAMENTO DE TEMAS (DARK / LIGHT)
+   ========================================================================== */
+.app-wrapper {
+  transition: color 0.3s ease;
+  min-height: 100vh;
+}
+
+.app-wrapper.dark {
+  color: #e1e1e6;
+}
+
+.app-wrapper.light {
+  color: #1f2937;
+}
+
+
+/* ==========================================================================
+   4. SEÇÃO HERO (INTRODUÇÃO) - COM ESPAÇAMENTO E TAMANHO AJUSTADOS
+   ========================================================================== */
+.hero-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(10rem, 14vw, 14rem) 1.5rem 3rem 1.5rem;
+  width: 100%;
+  box-sizing: border-box;
+  color: var(--text-primary);
+  text-align: center;
+  
+}
+
+.hero-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(790px, 90vw);
+  height: 1000px;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    circle,
+    rgba(56, 189, 248, 0.05) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 100%; /* Muda para 100% para evitar que ultrapasse */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* Frase azul superior colada no título */
+.hero-subtitle {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #3b82f6;
+  text-transform: uppercase;
+  margin-bottom: -20px; 
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  background-color: rgba(37, 99, 235, 0.05);
+  padding: 0.35rem 1.2rem;
+  border-radius: 50px;
+}
+
+/* Título principal grande */
+.hero-title {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(5rem, 10vw, 9rem); /* Reduzido levemente para evitar o scroll horizontal */
+  font-weight: 450;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  width: 100%;
+  word-break: break-word; /* Evita que palavras longas empurrem a tela */
+}
+
+.hero-title .text-highlight {
+  color: #60a5fa;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+.hero-description {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #fbfbff;
+  margin-bottom: 2rem;
+  max-width: 620px;
+}
+
+/* --- Versões e Tags --- */
+.versions-section {
+  margin-bottom: 2.5rem;
+  width: 100%;
+}
+
+.versions-label {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+.version-tags {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background-color: #212529;
+  border: 1px solid var(--border-strong);
+  color: var(--accent);
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.tag:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+/* Card de Aviso Legal Centralizado */
+.legal-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 3rem;
+  
+  /* Centraliza todo o texto de dentro do card */
+  text-align: center; 
+  
+  width: 90%;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+  margin-top: 35vh;
+  margin-bottom: 3rem;
+  box-sizing: border-box;
+}
+
+/* Centraliza o título e faz o ícone ficar alinhado perfeitamente junto ao texto */
+.legal-card h3 {
+  font-size: 1.8rem;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Joga o ícone e o texto para o meio exato */
+  gap: 0.6rem;
+}
+
+.legal-card p {
+  font-size: 1.5rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 0.8rem;
+  text-align: center; /* Garante que os parágrafos fiquem centralizados */
+}
+
+.legal-small {
+  font-size: 1rem !important;
+  color: var(--text-muted) !important;
+  margin-bottom: 0 !important;
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   5. BARRA DE NAVEGAÇÃO FLUTUANTE (ESTILO PÍLULA)
+   ========================================================================== */
+.polyglot-nav-bar {
+  width: 100%;
+  position: sticky;
+  top: 1rem;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3rem !important; 
+}
+
+.nav-container-inner {
+  border-radius: var(--radius-pill);
+  padding: 0.6rem 2rem !important;
+  width: max-content !important; 
+  max-width: 95%;
+  
+  display: flex;
+  flex-direction: row !important;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2.5rem; 
+  
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+}
+
+.app-wrapper.dark .nav-container-inner {
+  background-color: rgba(22, 25, 26, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid #42484b;
+}
+
+.app-wrapper.light .nav-container-inner {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.nav-controls-row {
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+  flex-wrap: nowrap !important;
+  gap: 1.5rem; 
+}
+
+.nav-actions-row {
+  display: flex;
+  flex-direction: row !important;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* --- Grupos de Seleção e Inputs da Pílula --- */
+.select-group {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.nav-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.app-wrapper.dark .nav-label { color: #94a3b8; }
+.app-wrapper.light .nav-label { color: #64748b; }
+
+.custom-select {
+  border-radius: 20px;
+  padding: 0.35rem 0.8rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.app-wrapper.dark .custom-select {
+  background-color: #212529;
+  border: 1px solid #42484b;
+  color: #ffffff;
+}
+
+.app-wrapper.light .custom-select {
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #1e293b;
+}
+
+.custom-select:hover,
+.custom-select:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+}
+
+.lock-control {
+  display: flex;
+  align-items: center;
+  padding: 0.35rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  user-select: none;
+}
+.app-wrapper.dark .lock-control { background-color: #212529; border: 1px solid #42484b; }
+.app-wrapper.light .lock-control { background-color: #f1f5f9; border: 1px solid #cbd5e1; }
+
+.custom-checkbox {
+  cursor: pointer;
+}
+.app-wrapper.dark .custom-checkbox {
+  background-color: var(--surface);
+  border-color: var(--border-strong);
+}
+.custom-checkbox:checked {
+  background-color: var(--accent);
+  border-color: var(--accent);
+}
+
+.text-current {
+  font-weight: 500;
+  font-size: 0.85rem;
+}
+.app-wrapper.dark .text-current { color: #ffffff; }
+.app-wrapper.light .text-current { color: #1e293b; }
+
+.legal-trigger-btn {
+  background: transparent;
+  border-radius: 20px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+.app-wrapper.dark .legal-trigger-btn { border: 1px solid #42484b; color: var(--gold); }
+.app-wrapper.light .legal-trigger-btn { border: 1px solid #cbd5e1; color: #b45309; }
+
+.legal-trigger-btn:hover {
+  background-color: rgba(246, 216, 96, 0.1);
+  border-color: var(--gold);
+}
+
+.theme-toggle-btn {
+  background: transparent;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+.app-wrapper.dark .theme-toggle-btn { border: 1px solid #42484b; background: #212529; }
+.app-wrapper.light .theme-toggle-btn { border: 1px solid #cbd5e1; background: #f1f5f9; }
+
+
+/* ==========================================================================
+   6. COLUNAS DA BÍBLIA E VERSÍCULOS
+   ========================================================================== */
+/* Container principal que guarda as colunas das traduções lado a lado */
+.bible-container,
+.bible-grid,
+.bible-columns-container {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  gap: 1.5rem !important; /* Espaçamento agradável entre elas */
+  width: 100% !important;
+  max-width: 100% !important; /* Libera para ocupar a tela toda */
+  padding: 0 2rem !important; /* Margem nas pontas esquerda e direita */
+  box-sizing: border-box;
+  justify-content: center !important; /* Centraliza caso sobra espaço */
+}
+
+/* Cada coluna individual da Bíblia */
+.bible-column {
+  flex: 0 0 23.5% !important; /* Força exatamente 24% da tela para cada uma das 4 colunas */
+  width: 23.5% !important;
+  min-width: 0 !important;   /* Crucial para impedir que o conteúdo estoure o flex */
+  max-height: 75vh;
+  overflow-y: auto;
+  padding: 1.2rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-strong);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+
+  /* Fade-in sempre que a coluna é remontada (troca de livro/capítulo) */
+  animation: bibleColumnFadeIn 0.5s ease both;
+
+  /* Scrollbar cinza (Firefox) */
+  scrollbar-width: thin;
+  scrollbar-color: var(--scroll-dark) transparent;
+}
+
+/* Scrollbar cinza (Chrome / Edge / Safari) */
+.bible-column::-webkit-scrollbar {
+  width: 8px;
+}
+
+.bible-column::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.bible-column::-webkit-scrollbar-thumb {
+  background-color: var(--scroll-dark);
+  border-radius: var(--radius-pill);
+}
+
+.bible-column::-webkit-scrollbar-thumb:hover {
+  background-color: var(--border-strong);
+}
+
+/* No tema claro, a barra fica num cinza mais claro pra combinar com o card */
+.bible-column.light {
+  scrollbar-color: #cbd5e1 transparent;
+}
+
+.bible-column.light::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+}
+
+.bible-column.light::-webkit-scrollbar-thumb:hover {
+  background-color: #94a3b8;
+}
+
+@keyframes bibleColumnFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bible-column {
+    animation: none;
+  }
+}
+
+/* Tema Escuro para as Colunas */
+.bible-column.dark {
+  background-color: #16191a !important;
+  border-color: #42484b !important;
+  color: #f4f4f6 !important;
+}
+.verse-text.dark { 
+  color: #f4f4f6 !important; 
+}
+
+/* Tema Claro para as Colunas */
+.bible-column.light {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #1e293b !important;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.verse-text.light { 
+  color: #1e293b !important; 
+}
+
+/* Versículos */
+.verse-item {
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+.verse-number {
+  font-weight: 700;
+  color: var(--accent);
+  margin-right: 0.5rem;
+  user-select: none;
+}

@@ -1,0 +1,73 @@
+/* Container que abriga as colunas lado a lado */
+.main-body {
+  display: flex;
+  gap: var(--space-2, 1rem);
+  justify-content: center;
+  width: 100%;
+  max-width: var(--page-max, 1600px);
+  margin: 0 auto;
+}
+
+/* Estilo individual de cada coluna da Bíblia */
+.bible-column {
+  flex: 1;
+  background-color: var(--surface, #16191a);
+  border: 1px solid var(--border-strong, #42484b);
+  border-radius: var(--radius-md, 8px);
+  padding: 1.2rem;
+  overflow-y: auto;
+  max-height: 80vh;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.bible-column:hover {
+  border-color: var(--accent, #38bdf8);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* Cabeçalho da coluna (Nome da versão) */
+.bible-column-header .badge {
+  background: linear-gradient(120deg, var(--accent, #38bdf8), var(--accent-2, #818cf8)) !important;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border-radius: var(--radius-pill, 999px);
+}
+
+/* Estilização dos versículos */
+.verse-item {
+  margin-bottom: 0.8rem;
+  line-height: 1.6;
+  text-align: left;
+}
+
+/* Número do versículo em azul destaque */
+.verse-number {
+  font-weight: 700;
+  color: var(--accent, #38bdf8);
+  margin-right: 0.5rem;
+  user-select: none;
+}
+
+/* Texto do versículo em branco */
+.verse-text {
+  color: #ffffff;
+  font-size: 0.95rem;
+}
+
+/* Customização da barra de rolagem interna das colunas */
+.bible-column::-webkit-scrollbar {
+  width: 6px;
+}
+
+.bible-column::-webkit-scrollbar-track {
+  background: var(--surface, #16191a);
+}
+
+.bible-column::-webkit-scrollbar-thumb {
+  background: var(--border-strong, #42484b);
+  border-radius: 3px;
+}
+
+.bible-column::-webkit-scrollbar-thumb:hover {
+  background: var(--accent, #38bdf8);
+}

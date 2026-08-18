@@ -1,0 +1,175 @@
+/* =========================================
+   1. HERO SECTION (INTRODUÇÃO)
+   ========================================= */
+.hero-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(4.5rem, 8vw, 6.5rem) 2rem 2rem 2rem;
+  width: 100%;
+  color: var(--text-primary);
+  text-align: center;
+  overflow: hidden;
+
+  /* Fundo com Grid Sutil */
+  background-size: 50px 50px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Glow ambiente (profundidade sutil) */
+.hero-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: min(700px, 90vw);
+  height: 420px;
+  transform: translateX(-50%);
+  background: radial-gradient(
+    circle,
+    rgba(56, 189, 248, 0.05) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 750px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================================
+   2. TIPOGRAFIA DA INTRODUÇÃO
+   ========================================= */
+/* Pílula Azul no topo */
+.hero-subtitle {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: #3b82f6;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  
+  border: 1px solid rgba(37, 99, 235, 0.3);
+  background-color: rgba(37, 99, 235, 0.05);
+  padding: 0.35rem 1.2rem;
+  border-radius: 50px;
+}
+
+/* Título principal: Serifado e elegante */
+.hero-title {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 400;
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
+  filter: none;
+}
+
+/* Destaque azul na segunda linha do título */
+.hero-title .text-highlight {
+  color: #60a5fa;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* Descrição (texto menor na base) */
+.hero-description {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #a1a1aa;
+  margin-bottom: 2rem;
+  max-width: 620px;
+}
+
+/* =========================================
+   3. SEÇÃO DE VERSÕES E TAGS
+   ========================================= */
+.versions-section {
+  margin-bottom: 2.5rem;
+  width: 100%;
+}
+
+.versions-label {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+  font-weight: 500;
+}
+
+.version-tags {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  background-color: #212529;
+  border: 1px solid var(--border-strong);
+  color: var(--accent);
+  padding: 0.4rem 1.2rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.tag:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+
+/* =========================================
+   4. CARD DE AVISO LEGAL
+   ========================================= */
+.legal-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  text-align: left;
+  width: 100%;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  margin-bottom: 2rem;
+}
+
+.legal-card h3 {
+  font-size: 1rem;
+  color: var(--gold);
+  margin-bottom: 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legal-card p {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  margin-bottom: 0.6rem;
+}
+
+.legal-small {
+  font-size: 0.8rem !important;
+  color: var(--text-muted) !important;
+  margin-bottom: 0 !important;
+}
