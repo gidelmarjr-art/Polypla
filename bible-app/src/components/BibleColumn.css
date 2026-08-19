@@ -6,18 +6,22 @@
   width: 100%;
   max-width: var(--page-max, 1600px);
   margin: 0 auto;
+  height: 85vh; /* Força o container principal a ter uma altura grande na tela */
 }
 
-/* Estilo individual de cada coluna da Bíblia */
 .bible-column {
-  flex: 1;
-  background-color: var(--surface, #16191a);
-  border: 1px solid var(--border-strong, #42484b);
-  border-radius: var(--radius-md, 8px);
-  padding: 1.2rem;
+  flex: 0 0 23.5% !important;
+  width: 23.5% !important;
+  min-width: 0 !important;   
+  height: 100%; /* Vai assumir os 88vh passados via props no componente */
+  max-height: 88vh;
   overflow-y: auto;
-  max-height: 80vh;
-  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  padding: 1.2rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-strong);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
 }
 
 .bible-column:hover {

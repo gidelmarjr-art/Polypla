@@ -467,10 +467,11 @@ body, html {
 
 /* Cada coluna individual da Bíblia */
 .bible-column {
-  flex: 0 0 23.5% !important; /* Força exatamente 24% da tela para cada uma das 4 colunas */
+  flex: 0 0 23.5% !important;
   width: 23.5% !important;
-  min-width: 0 !important;   /* Crucial para impedir que o conteúdo estoure o flex */
-  max-height: 75vh;
+  min-width: 0 !important;   
+  height: 100%; /* Vai assumir os 85vh definidos no App.jsx */
+  max-height: 85vh;
   overflow-y: auto;
   padding: 1.2rem;
   border-radius: var(--radius-md);
@@ -478,6 +479,7 @@ body, html {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+
 
   /* Fade-in sempre que a coluna é remontada (troca de livro/capítulo) */
   animation: bibleColumnFadeIn 0.5s ease both;

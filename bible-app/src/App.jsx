@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
-import BibleColumn from './components/BibleColumn';
-import LegalPopup from './components/LegalPopup';
-import { HeroHome } from './components/HeroHome';
-import { useBibleStore } from './store/bibleStore';
+import React, { useState, useEffect, useRef } from "react";
+import BibleColumn from "./components/BibleColumn";
+import LegalPopup from "./components/LegalPopup";
+import { HeroHome } from "./components/HeroHome";
+import { useBibleStore } from "./store/bibleStore";
 
 export default function App() {
   const { ara, loadBibles } = useBibleStore();
@@ -15,10 +15,10 @@ export default function App() {
   const [chapter, setChapter] = useState(0);
   const [checked, setChecked] = useState(true);
   const [legalPopup, setLegalPopup] = useState(false);
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState("dark");
 
   const toggleTheme = () => {
-    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
   const currentBookData = ara[book] || { chapters: [] };
@@ -46,73 +46,78 @@ export default function App() {
   };
 
   return (
-    <div className={`app-wrapper ${theme} min-vh-100 d-flex flex-column align-items-center`}>
-      
+    <div
+      className={`app-wrapper ${theme} min-vh-100 d-flex flex-column align-items-center`}
+    >
       {/* 1. Seção de Introdução (Hero) */}
       <HeroHome />
 
       {/* 2. Barra de Navegação Pílula */}
       <div className="polyglot-nav-bar px-3">
         <div className="nav-container-inner">
-          
           {/* LADO ESQUERDO: Livro, Capítulo e Sincronizado */}
           <div className="nav-controls-row">
-            
             <div className="select-group">
               <span className="nav-label">Livro:</span>
-              <select 
-                className="custom-select" 
-                value={book} 
+              <select
+                className="custom-select"
+                value={book}
                 onChange={(e) => {
                   setBook(Number(e.target.value));
-                  setChapter(0); 
+                  setChapter(0);
                 }}
               >
                 {ara.map((b, index) => (
-                  <option key={index} value={index}>{b.name}</option>
+                  <option key={index} value={index}>
+                    {b.name}
+                  </option>
                 ))}
               </select>
             </div>
 
             <div className="select-group">
               <span className="nav-label">Cap:</span>
-              <select 
-                className="custom-select" 
-                value={chapter} 
+              <select
+                className="custom-select"
+                value={chapter}
                 onChange={(e) => setChapter(Number(e.target.value))}
               >
                 {currentBookData.chapters.map((_, index) => (
-                  <option key={index} value={index}>{index + 1}</option>
+                  <option key={index} value={index}>
+                    {index + 1}
+                  </option>
                 ))}
               </select>
             </div>
 
             <div className="lock-control">
-              <input 
-                className="custom-checkbox m-0" 
-                type="checkbox" 
-                id="syncCheck" 
-                checked={checked} 
-                onChange={(e) => setChecked(e.target.checked)} 
+              <input
+                className="custom-checkbox m-0"
+                type="checkbox"
+                id="syncCheck"
+                checked={checked}
+                onChange={(e) => setChecked(e.target.checked)}
               />
-              <label className="text-current m-0 ms-2" htmlFor="syncCheck" style={{ cursor: 'pointer' }}> 
-                Sincronizado 
+              <label
+                className="text-current m-0 ms-2"
+                htmlFor="syncCheck"
+                style={{ cursor: "pointer" }}
+              >
+                Sincronizado
               </label>
             </div>
-
           </div>
 
           {/* LADO DIREITO: Ícone de Tema */}
           <div className="nav-actions-row">
-            <button 
-              className="theme-toggle-btn" 
+            <button
+              className="theme-toggle-btn"
               onClick={toggleTheme}
               title="Alternar Tema Claro / Escuro"
             >
-              {theme === 'dark' ? '☀️' : '🌙'}
+              {theme === "dark" ? "☀️" : "🌙"}
             </button>
           </div>
-
         </div>
       </div>
 
@@ -126,7 +131,7 @@ export default function App() {
           chapter={chapter} 
           defaultVersion="nvi" 
           theme={theme}
-          style={checked ? { height: 'auto' } : { height: '80vh' }} 
+          style={{ height: '85vh' }} 
         />
         <BibleColumn 
           key={`naa-${book}-${chapter}`}
@@ -136,7 +141,7 @@ export default function App() {
           chapter={chapter} 
           defaultVersion="naa" 
           theme={theme}
-          style={checked ? { height: 'auto' } : { height: '80vh' }} 
+          style={{ height: '85vh' }} 
         />
         <BibleColumn 
           key={`ara-${book}-${chapter}`}
@@ -146,7 +151,7 @@ export default function App() {
           chapter={chapter} 
           defaultVersion="ara" 
           theme={theme}
-          style={checked ? { height: 'auto' } : { height: '80vh' }} 
+          style={{ height: '85vh' }} 
         />
         <BibleColumn 
           key={`arc-${book}-${chapter}`}
@@ -156,7 +161,7 @@ export default function App() {
           chapter={chapter} 
           defaultVersion="arc" 
           theme={theme}
-          style={checked ? { height: 'auto' } : { height: '80vh' }} 
+          style={{ height: '85vh' }} 
         />
       </div>
 
